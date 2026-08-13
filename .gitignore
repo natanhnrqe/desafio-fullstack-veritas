@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Build do frontend
+frontend/dist/
+
+# Variáveis de ambiente
+.env
+*.env
+
+# Binário compilado do Go
+backend/mini-kanban
+backend/*.exe
+
+# Banco de dados local
+*.db
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
