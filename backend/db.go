@@ -17,16 +17,17 @@ func InitDB() {
 	}
 
 	var err error
+
 	DB, err = sql.Open("pgx", connStr)
 	if err != nil {
 		log.Fatal("Erro ao conectar no banco:", err)
 	}
 
 	if err = DB.Ping(); err != nil {
-		log.Fatal("Banco não respondeu:", err) // ← aqui vai aparecer o erro real
+		log.Fatal("Banco não respondeu:", err)
 	}
 
-	log.Println("✅ Banco de dados conectado!")
+	log.Println("Banco de dados conectado!")
 	createTable()
 }
 

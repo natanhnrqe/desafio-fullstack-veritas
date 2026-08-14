@@ -19,10 +19,10 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins: []string{"http://localhost:5173"}, // Porta padrão do Vite
-		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowedHeaders: []string{"Content-Type"},
-	}))
+    AllowedOrigins: []string{"*"},
+    AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+    AllowedHeaders: []string{"Content-Type"},
+}))
 
 	r.Get("/tasks", GetTasks)
 	r.Post("/tasks", CreateTask)
