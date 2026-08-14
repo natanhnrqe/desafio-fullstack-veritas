@@ -10,27 +10,23 @@ import (
 
 var DB *sql.DB
 
-func initDB(){
-
+func InitDB() {
 	connStr := os.Getenv("DATABASE_URL")
-
 	if connStr == "" {
-		connStr = "host=localhost port=5432 user=kanban password=kanban123 dbname=kanban sslmode=disable"
+		connStr = "host=localhost port=5433 user=kanban password=kanban123 dbname=kanban sslmode=disable"
 	}
 
 	var err error
 	DB, err = sql.Open("pgx", connStr)
-
 	if err != nil {
-		log.Fatal("Erro ao conectar ao banco:", err)
+		log.Fatal("Erro ao conectar no banco:", err)
 	}
 
 	if err = DB.Ping(); err != nil {
-		log.Fatal("Banco de dados não respondeu", err)
+		log.Fatal("Banco não respondeu:", err) // ← aqui vai aparecer o erro real
 	}
 
-	log.Println("Banco de dados conectado com sucesso!!!")
-
+	log.Println("✅ Banco de dados conectado!")
 	createTable()
 }
 
