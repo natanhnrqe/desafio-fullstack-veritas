@@ -1,5 +1,7 @@
 package main
 
+
+
 import (
 	"log"
 	"net/http"
@@ -17,6 +19,7 @@ func main() {
 
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
+	r.Use(RateLimiter)
 
 	r.Use(cors.Handler(cors.Options{
     AllowedOrigins: []string{"*"},

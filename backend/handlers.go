@@ -48,10 +48,28 @@ respondWithJSON(w, http.StatusOK, tasks)
 
 // POST /tasks
 func CreateTask(w http.ResponseWriter, r *http.Request) {
+
+	var count int
+	DB.QueryRow("SELECT COUNT(*) FROM tasks").Scan(&count)
+	if count >= 100 {
+		respondWithError(w, http.StatusForbidden, "Limite de tarefas atingido")
+		return
+	}
+
 	var t Task
 
 	if err := json.NewDecoder(r.Body).Decode(&t); err != nil {
 		respondWithError(w, http.StatusBadRequest, "JSON Invalido!!!")
+		return
+	}
+
+	if len(t.Title) > 100 {
+    respondWithError(w, http.StatusBadRequest, "Título muito longo (máx 100 caracteres)")
+    return
+	}
+
+	if t.Description != nil && len(*t.Description) > 500 {
+		respondWithError(w, http.StatusBadRequest, "Descrição muito longa (máx 500 caracteres)")
 		return
 	}
 
