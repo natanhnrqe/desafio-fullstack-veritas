@@ -45,14 +45,18 @@ export default function App() {
   }
 
   
-  const handleUpdate = async (id, taskData) => {
-    try {
-      const updated = await updateTask(id, taskData)
-      setTasks(prev => prev.map(t => t.id === id ? updated : t))
-    } catch (err) {
-      setError('Erro ao atualizar tarefa')
-    }
+ const handleUpdate = async (id, taskData) => {
+  
+  setTasks(prev => prev.map(t => t.id === id ? { ...t, ...taskData } : t))
+  try {
+    const updated = await updateTask(id, taskData)
+    setTasks(prev => prev.map(t => t.id === id ? updated : t))
+  } catch (err) {
+    
+    setError('Erro ao atualizar tarefa')
+    fetchTasks()
   }
+}
 
  
   const handleDelete = async (id) => {
