@@ -4,6 +4,15 @@ Aplicação fullstack de gerenciamento de tarefas no estilo Kanban, desenvolvida
 
 ---
 
+## Demo
+
+| | URL |
+|--|--|
+| 🌐 Frontend | https://desafio-fullstack-veritas-olive.vercel.app |
+| ⚙️ Backend | https://desafio-fullstack-veritas-production.up.railway.app |
+
+---
+
 ## Tecnologias
 
 | Camada | Tecnologia |
